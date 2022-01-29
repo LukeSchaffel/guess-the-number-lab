@@ -3,20 +3,63 @@ const game = {
   biggestNum: 100,
   smallestNum: 1,
   secretNum: null,
-  play: function() {
-    this.secretNum = Math.floor(Math.random() * 
-      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
-
-  },
+  playerCurrentGuess: null,
   prevoiusGuesses: [],
 
+
   getGuess: function(){
-    this.playerGuess = window.prompt(`Enter a number between ${this.smallestNum} and 1 ${this.biggestNum}`)
-    if (this.playerGuess >= 1 &&  this.playerGuess <= 100) {return this.playerGuess} else {return this.playerGuess = NaN}
+     
+    let input = null
+    
+    
+      input = window.prompt(`Enter a number between ${this.smallestNum} and ${this.biggestNum}`)
+      this.playerCurrentGuess = parseInt(input)
+  
+    console.log(typeof this.playerCurrentGuess)
+    return this.playerCurrentGuess
+    },
+  
+  render: function(){
+    if (this.playerCurrentGuess === this.secretNum){
+      console.log(`Congrats! You guessed the number in ${this.prevoiusGuesses.length} guesses!`) 
+    } else { console.log(`Your guess is too [high|low] Previous guesses: x, x, x, x`)}
+
+
   },
+  
+  play: function() {
+    this.secretNum = Math.floor(Math.random() * 
+      (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
+      
+      
+        while (this.prevoiusGuesses[this.prevoiusGuesses.length-1] !== this.secretNum){
+          this.getGuess()
+        console.log(`the computer picked ${this.secretNum}`)
+        console.log (this.playerCurrentGuess)
+        this.prevoiusGuesses.push(this.playerCurrentGuess)
+        console.log(this.prevoiusGuesses)
+        this.render()
+      }
+          
+      
+      
+        
+      //return this.prevoiusGuesses
+      
+      
+      // while ()
+      // {this.getGuess()
+      // this.prevoiusGuesses.push(this.playerCurrentGuess)}
+
+      
+
+  },
+  
+
+  
   }
 
-  //game.getGuess()
-  console.log(typeof game.playerGuess)
+  game.play()
 
- 
+ console.log(game.play)
+  
