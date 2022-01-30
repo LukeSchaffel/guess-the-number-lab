@@ -39,7 +39,9 @@ const game = {
   
   }
 
-game.play()
+
+
+  game.play()
 
 
   
