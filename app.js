@@ -6,20 +6,25 @@ const game = {
   playerCurrentGuess: null,
   prevoiusGuesses: [],
 
+//have to do ----- make the getGuess check if the number is withing the params. 
+
+
+
 
   getGuess: function(){
     let input = null 
-    let isCorrectNum = null
 
-    while (this.playerCurrentGuess !== this.secretNum ) {
+    while (this.playerCurrentGuess !== this.secretNum) {
 
 
           if (this.prevoiusGuesses.length ===0) {
             input = window.prompt(`Enter a number between ${this.smallestNum} and ${this.biggestNum}.`)
+            // check the range here
             this.playerCurrentGuess = parseInt(input)
             return this.playerCurrentGuess 
             
           } else { input = window.prompt(`Enter a number  between ${this.smallestNum} and ${this.biggestNum}. Previous Guesses = ${this.prevoiusGuesses.join(', ')}`)
+          //check the range here
           this.playerCurrentGuess = parseInt(input)
           return this.playerCurrentGuess 
         
@@ -46,13 +51,14 @@ const game = {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
         while (this.prevoiusGuesses[this.prevoiusGuesses.length-1] !== this.secretNum){
-        this.getGuess()
-        //console.log(`the computer picked ${this.secretNum}`)
-        //console.log (this.playerCurrentGuess)
-        this.prevoiusGuesses.push(this.playerCurrentGuess)
-        //console.log(this.prevoiusGuesses)
-        this.render()
+          this.getGuess()
+          //console.log(`the computer picked ${this.secretNum}`)
+          //console.log (this.playerCurrentGuess)
+          this.prevoiusGuesses.push(this.playerCurrentGuess)
+          //console.log(this.prevoiusGuesses)
+          this.render()
       }
+      return
   },
   
 
